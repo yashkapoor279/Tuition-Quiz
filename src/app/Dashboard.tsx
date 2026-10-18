@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase.ts'
 import { useAuth } from '../features/auth/useAuth.ts'
+import { ClassroomsPage } from '../features/classrooms/ClassroomsPage.tsx'
 
 export function Dashboard() {
   const { session } = useAuth()
@@ -30,7 +31,8 @@ export function Dashboard() {
     <section>
       <h2>Teacher dashboard</h2>
       {problem ? <p role="alert">Could not load profile: {problem}</p> : <p>Welcome, {name ?? '…'}.</p>}
-      <p>Classrooms and quizzes are coming in later phases.</p>
+      <ClassroomsPage />
+      <p>Quizzes are coming in a later phase.</p>
       <button onClick={() => supabase.auth.signOut()}>Log out</button>
     </section>
   )
