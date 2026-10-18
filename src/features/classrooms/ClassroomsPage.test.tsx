@@ -10,7 +10,19 @@ vi.mock('./api.ts', () => ({
   deleteStudent: vi.fn(),
 }))
 
+vi.mock('../quizzes/api.ts', () => ({
+  listQuizzes: vi.fn().mockResolvedValue([]),
+  createQuiz: vi.fn(),
+  renameQuiz: vi.fn(),
+  deleteQuiz: vi.fn(),
+  loadQuestions: vi.fn().mockResolvedValue([]),
+  saveQuestion: vi.fn(),
+  deleteQuestion: vi.fn(),
+  publishQuiz: vi.fn(),
+}))
+
 import * as api from './api.ts'
+import * as quizApi from '../quizzes/api.ts'
 import { ClassroomsPage } from './ClassroomsPage.tsx'
 
 const classroom = { id: 'c1', name: 'Class 5 Maths', join_code: 'K7M2QX', created_at: '2026-10-19T00:00:00Z' }
@@ -20,6 +32,7 @@ beforeEach(() => {
   vi.resetAllMocks()
   vi.mocked(api.listClassrooms).mockResolvedValue([classroom])
   vi.mocked(api.listStudents).mockResolvedValue([student])
+  vi.mocked(quizApi.listQuizzes).mockResolvedValue([])
 })
 
 describe('ClassroomsPage', () => {

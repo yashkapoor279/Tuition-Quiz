@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { addStudent, deleteClassroom, deleteStudent, listStudents } from './api.ts'
 import type { Classroom, Student } from './types.ts'
 import { validateName } from './validation.ts'
+import { QuizzesSection } from '../quizzes/QuizzesSection.tsx'
 
 interface Props {
   classroom: Classroom
@@ -107,6 +108,10 @@ export function ClassroomDetail({ classroom, onBack }: Props) {
           </tbody>
         </table>
       )}
+
+      <hr />
+      <QuizzesSection classroomId={classroom.id} />
+      <hr />
 
       <p>
         <button onClick={onDeleteClassroom} disabled={busy}>Delete this classroom</button>
